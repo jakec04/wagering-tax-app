@@ -11,13 +11,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      background-color: #f7f7f7;
-      font-family: 'Roboto', sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
+      background: #ffffff; /* keep page background white */
+    }
+
+    body {
+      background-color: #f7f7f7; /* light gray around the card */
+      font-family: 'Roboto', sans-serif;
       color: #111111;
     }
+
     .app-container {
       max-width: 900px;
       margin: 0 auto;
@@ -26,44 +31,52 @@
       border-left: 1px solid #e2e2e2;
       border-right: 1px solid #e2e2e2;
     }
+
     .app-headline {
       font-size: 32px;
       line-height: 1.15;
       margin-bottom: 25px;
       font-weight: 700;
     }
+
     .app-input-panel {
       border-top: 1px solid #e2e2e2;
       border-bottom: 1px solid #e2e2e2;
       padding: 20px 0 16px 0;
       margin-bottom: 30px;
     }
+
     .app-instruction {
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 6px;
       color: #222222;
     }
+
     .app-input-note {
       font-size: 12px;
       color: #777777;
       margin-top: 4px;
       margin-bottom: 16px;
     }
+
     .input-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
     }
+
     .input-col {
       flex: 1 1 180px;
       min-width: 0;
     }
+
     .input-col label {
       font-size: 12px;
       display: block;
       margin-bottom: 4px;
     }
+
     .input-col input[type="number"] {
       width: 100%;
       box-sizing: border-box;
@@ -72,47 +85,56 @@
       border: 1px solid #cccccc;
       border-radius: 3px;
     }
+
     .app-big-number {
       font-size: 30px;
       font-weight: 600;
       margin-bottom: 10px;
       min-height: 1.4em;
     }
+
     .app-subline {
       font-size: 14px;
       color: #444444;
       margin-bottom: 25px;
       min-height: 1.4em;
     }
+
     .app-impact-block {
       background: #f2f2f2;
       padding: 18px 20px;
       border-radius: 4px;
       margin-bottom: 20px;
     }
+
     .app-impact-title {
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 6px;
     }
+
     .app-impact-line {
       font-size: 15px;
       margin-bottom: 4px;
       min-height: 1.2em;
     }
+
     .app-note {
       font-size: 12px;
       color: #777777;
       margin-top: 10px;
       max-width: 650px;
     }
+
     .app-note a {
       color: #0056b3;
       text-decoration: underline;
     }
+
     .byline {
       margin-top: 18px;
     }
+
     @media (max-width: 640px) {
       .app-container {
         padding: 20px 12px 40px 12px;
@@ -160,12 +182,8 @@
   </div>
 
   <!-- RESULTS ------------------------------------------------------------ -->
-  <div id="headline-cost" class="app-big-number">
-    <!-- filled by JS -->
-  </div>
-  <div id="headline-context" class="app-subline">
-    <!-- filled by JS -->
-  </div>
+  <div id="headline-cost" class="app-big-number"></div>
+  <div id="headline-context" class="app-subline"></div>
 
   <!-- IMPACT LINES -------------------------------------------------------- -->
   <div class="app-impact-block">
@@ -207,6 +225,7 @@
 </div><!-- /.app-container -->
 
 <script>
+  // ======================= CALCULATOR LOGIC ============================
   (function() {
     const TAX_PER_WAGER = 0.50;
 
@@ -228,15 +247,15 @@
       return pct.toFixed(digits) + '%';
     }
 
-    const betsInput   = document.getElementById('bets-per-week');
-    const betSizeInput = document.getElementById('bet-size');
-    const weeksInput  = document.getElementById('weeks');
+    const betsInput      = document.getElementById('bets-per-week');
+    const betSizeInput   = document.getElementById('bet-size');
+    const weeksInput     = document.getElementById('weeks');
 
-    const headlineCostEl     = document.getElementById('headline-cost');
-    const headlineContextEl  = document.getElementById('headline-context');
-    const impactPerBetEl     = document.getElementById('impact-per-bet');
-    const impactPerWeekEl    = document.getElementById('impact-per-week');
-    const impactPerYearEl    = document.getElementById('impact-per-year');
+    const headlineCostEl    = document.getElementById('headline-cost');
+    const headlineContextEl = document.getElementById('headline-context');
+    const impactPerBetEl    = document.getElementById('impact-per-bet');
+    const impactPerWeekEl   = document.getElementById('impact-per-week');
+    const impactPerYearEl   = document.getElementById('impact-per-year');
 
     function getNumber(input, fallback) {
       const v = parseFloat(input.value);
@@ -259,13 +278,14 @@
       const pctPerBet = betSize > 0 ? TAX_PER_WAGER / betSize : NaN;
       const effRate   = totalStaked > 0 ? totalFee / totalStaked : NaN;
 
-      // Headline -----------------------------------------------------------
+      // Headline
       if (betsWeek === 0 || betSize === 0) {
         headlineCostEl.textContent = 'Enter your betting habits above.';
         headlineContextEl.textContent = '';
         impactPerBetEl.textContent = '';
         impactPerWeekEl.textContent = '';
         impactPerYearEl.textContent = '';
+        sendHeight();
         return;
       }
 
@@ -283,7 +303,7 @@
         headlineContextEl.textContent = '';
       }
 
-      // Impact lines -------------------------------------------------------
+      // Impact lines
       if (isFinite(pctPerBet) && betSize > 0) {
         impactPerBetEl.textContent =
           '• An effective cost increase of about ' +
@@ -300,6 +320,8 @@
       impactPerYearEl.textContent =
         '• About ' + currencyPrecise.format(yearlyFee) +
         ' in per-wager taxes over a full year at similar betting levels';
+
+      sendHeight();
     }
 
     // Hook up events
@@ -310,8 +332,26 @@
     });
 
     // Initial render
-    update();
+    window.addEventListener('load', update);
   })();
+
+  // ======================= AUTO-RESIZE FOR EMBED =======================
+  function sendHeight() {
+    const height = document.documentElement.scrollHeight;
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: "embedHeight", height: height }, "*");
+    }
+  }
+
+  window.addEventListener("load", sendHeight);
+
+  if (typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(sendHeight);
+    ro.observe(document.body);
+  }
+
+  document.addEventListener("input", sendHeight);
+  document.addEventListener("change", sendHeight);
 </script>
 
 </body>
