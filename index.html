@@ -14,22 +14,32 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ffffff; /* keep page background white */
+      background: #ffffff;
     }
 
     body {
-      background-color: #f7f7f7; /* light gray around the card */
+      background-color: #f7f7f7;
       font-family: 'Roboto', sans-serif;
       color: #111111;
     }
 
+    /* ---------- OUTER FRAME (top bar + spacing) ---------- */
+    .app-outer-frame {
+      padding: 24px 0 24px 0;
+      border-top: 4px solid #e0e0e0;
+      background: #ffffff;
+    }
+
+    /* ---------- CLEAN CARD, NO BORDERS ---------- */
     .app-container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 30px 15px 60px 15px;
+      padding: 20px 15px 40px 15px;
       background-color: #ffffff;
-      border-left: 1px solid #e2e2e2;
-      border-right: 1px solid #e2e2e2;
+      /* ❌ REMOVED border-left
+         ❌ REMOVED border-right
+         ❌ REMOVED all borders
+         ❌ REMOVED panel-like frame */
     }
 
     .app-headline {
@@ -147,211 +157,214 @@
 </head>
 <body>
 
-<div class="app-container">
+<!-- ================= OUTER FRAME ================= -->
+<div class="app-outer-frame">
 
-  <div class="app-headline">
-    How Illinois’ New Per-Wager Tax Adds Up for Bettors
-  </div>
+  <!-- ================= CLEAN CARD (no borders) ================= -->
+  <div class="app-container">
 
-  <!-- INPUT PANEL -------------------------------------------------------- -->
-  <div class="app-input-panel">
-    <div class="app-instruction">
-      Enter your betting habits to see how Illinois’ per-wager tax adds up over time.
-    </div>
-    <div class="app-input-note">
-      Default values reflect median weekly betting patterns reported in a 2024
-      <a href="https://mattbrownecon.github.io/assets/papers/jmp/sportsbetting.pdf" target="_blank">
-        Stanford study
-      </a>.
+    <div class="app-headline">
+      How Illinois’ New Per-Wager Tax Adds Up for Bettors
     </div>
 
-    <div class="input-row">
-      <div class="input-col">
-        <label for="bets-per-week">Bets per week</label>
-        <input id="bets-per-week" type="number" min="0" value="17">
+    <!-- INPUT PANEL -------------------------------------------------------- -->
+    <div class="app-input-panel">
+      <div class="app-instruction">
+        Enter your betting habits to see how Illinois’ per-wager tax adds up over time.
       </div>
-      <div class="input-col">
-        <label for="bet-size">Average bet size ($)</label>
-        <input id="bet-size" type="number" min="0" step="1" value="10">
+      <div class="app-input-note">
+        Default values reflect median weekly betting patterns reported in a 2024
+        <a href="https://mattbrownecon.github.io/assets/papers/jmp/sportsbetting.pdf" target="_blank">
+          Stanford study
+        </a>.
       </div>
-      <div class="input-col">
-        <label for="weeks">Weeks of betting</label>
-        <input id="weeks" type="number" min="1" step="1" value="4">
+
+      <div class="input-row">
+        <div class="input-col">
+          <label for="bets-per-week">Bets per week</label>
+          <input id="bets-per-week" type="number" min="0" value="17">
+        </div>
+        <div class="input-col">
+          <label for="bet-size">Average bet size ($)</label>
+          <input id="bet-size" type="number" min="0" step="1" value="10">
+        </div>
+        <div class="input-col">
+          <label for="weeks">Weeks of betting</label>
+          <input id="weeks" type="number" min="1" step="1" value="4">
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- RESULTS ------------------------------------------------------------ -->
-  <div id="headline-cost" class="app-big-number"></div>
-  <div id="headline-context" class="app-subline"></div>
+    <!-- RESULTS ------------------------------------------------------------ -->
+    <div id="headline-cost" class="app-big-number"></div>
+    <div id="headline-context" class="app-subline"></div>
 
-  <!-- IMPACT LINES -------------------------------------------------------- -->
-  <div class="app-impact-block">
-    <div class="app-impact-title">You pay:</div>
-    <div id="impact-per-bet" class="app-impact-line"></div>
-    <div id="impact-per-week" class="app-impact-line"></div>
-    <div id="impact-per-year" class="app-impact-line"></div>
-  </div>
+    <!-- IMPACT LINES -------------------------------------------------------- -->
+    <div class="app-impact-block">
+      <div class="app-impact-title">You pay:</div>
+      <div id="impact-per-bet" class="app-impact-line"></div>
+      <div id="impact-per-week" class="app-impact-line"></div>
+      <div id="impact-per-year" class="app-impact-line"></div>
+    </div>
 
-  <!-- FOOTNOTES ---------------------------------------------------------- -->
-  <div class="app-note">
-    This calculator shows estimated out-of-pocket costs under Illinois’ per-wager tax.
-    It does not account for winnings or losses, parlays, promotional boosts, or other taxes
-    proposed at the local or state&nbsp;level.
-  </div>
+    <!-- FOOTNOTES ---------------------------------------------------------- -->
+    <div class="app-note">
+      This calculator shows estimated out-of-pocket costs under Illinois’ per-wager tax.
+      It does not account for winnings or losses, parlays, promotional boosts, or other taxes
+      proposed at the local or state&nbsp;level.
+    </div>
 
-  <div class="app-note">
-    Please bet responsibly. If you or someone you know struggles with gambling, support is available at
-    <span style="white-space: nowrap;">
-      <a href="https://e.helplineil.org/areyoureallywinning/" target="_blank">
-        Illinois’ Gambling Hotline Page
-      </a>.
-    </span>
-  </div>
+    <div class="app-note">
+      Please bet responsibly. If you or someone you know struggles with gambling, support is available at
+      <span style="white-space: nowrap;">
+        <a href="https://e.helplineil.org/areyoureallywinning/" target="_blank">
+          Illinois’ Gambling Hotline Page
+        </a>.
+      </span>
+    </div>
 
-  <div class="app-note byline">
-    Developed by
-    <a href="https://github.com/jakec04" target="_blank">Jake Cox</a> /
-    <a href="https://communication.depaul.edu/about/initiatives/center-for-journalism-integrity-and-excellence/Pages/default.aspx"
-       target="_blank">
-      DePaul University Center for Journalism Integrity and Excellence
-    </a>
-    in collaboration with
-    <span style="white-space: nowrap;">
-      <a href="https://www.nbcchicago.com" target="_blank">NBC5&nbsp;Chicago</a>.
-    </span>
-  </div>
+    <div class="app-note byline">
+      Developed by
+      <a href="https://github.com/jakec04" target="_blank">Jake Cox</a> /
+      <a href="https://communication.depaul.edu/about/initiatives/center-for-journalism-integrity-and-excellence/Pages/default.aspx"
+         target="_blank">
+        DePaul University Center for Journalism Integrity and Excellence
+      </a>
+      in collaboration with
+      <span style="white-space: nowrap;">
+        <a href="https://www.nbcchicago.com" target="_blank">NBC5&nbsp;Chicago</a>.
+      </span>
+    </div>
 
-</div><!-- /.app-container -->
+  </div><!-- /.app-container -->
+</div><!-- /.app-outer-frame -->
 
+<!-- ======================= CALCULATOR LOGIC ============================ -->
 <script>
-  // ======================= CALCULATOR LOGIC ============================
-  (function() {
-    const TAX_PER_WAGER = 0.50;
+(function() {
+  const TAX_PER_WAGER = 0.50;
 
-    const currency = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    });
+  const currency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0
+  });
 
-    const currencyPrecise = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 2
-    });
+  const currencyPrecise = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 2
+  });
 
-    function formatPercent(value, digits) {
-      if (!isFinite(value)) return '';
-      const pct = value * 100;
-      return pct.toFixed(digits) + '%';
-    }
+  function formatPercent(value, digits) {
+    if (!isFinite(value)) return '';
+    const pct = value * 100;
+    return pct.toFixed(digits) + '%';
+  }
 
-    const betsInput      = document.getElementById('bets-per-week');
-    const betSizeInput   = document.getElementById('bet-size');
-    const weeksInput     = document.getElementById('weeks');
+  const betsInput      = document.getElementById('bets-per-week');
+  const betSizeInput   = document.getElementById('bet-size');
+  const weeksInput     = document.getElementById('weeks');
 
-    const headlineCostEl    = document.getElementById('headline-cost');
-    const headlineContextEl = document.getElementById('headline-context');
-    const impactPerBetEl    = document.getElementById('impact-per-bet');
-    const impactPerWeekEl   = document.getElementById('impact-per-week');
-    const impactPerYearEl   = document.getElementById('impact-per-year');
+  const headlineCostEl    = document.getElementById('headline-cost');
+  const headlineContextEl = document.getElementById('headline-context');
+  const impactPerBetEl    = document.getElementById('impact-per-bet');
+  const impactPerWeekEl   = document.getElementById('impact-per-week');
+  const impactPerYearEl   = document.getElementById('impact-per-year');
 
-    function getNumber(input, fallback) {
-      const v = parseFloat(input.value);
-      return isNaN(v) ? fallback : v;
-    }
+  function getNumber(input, fallback) {
+    const v = parseFloat(input.value);
+    return isNaN(v) ? fallback : v;
+  }
 
-    function update() {
-      let betsWeek = Math.max(getNumber(betsInput, 0), 0);
-      let betSize  = Math.max(getNumber(betSizeInput, 0), 0);
-      let weeks    = Math.max(getNumber(weeksInput, 1), 1);
+  function update() {
+    let betsWeek = Math.max(getNumber(betsInput, 0), 0);
+    let betSize  = Math.max(getNumber(betSizeInput, 0), 0);
+    let weeks    = Math.max(getNumber(weeksInput, 1), 1);
 
-      const weeklyFee    = betsWeek * TAX_PER_WAGER;
-      const weeklyStaked = betsWeek * betSize;
+    const weeklyFee    = betsWeek * TAX_PER_WAGER;
+    const weeklyStaked = betsWeek * betSize;
 
-      const totalFee    = weeklyFee * weeks;
-      const totalStaked = weeklyStaked * weeks;
+    const totalFee    = weeklyFee * weeks;
+    const totalStaked = weeklyStaked * weeks;
 
-      const yearlyFee   = weeklyFee * 52;
+    const yearlyFee   = weeklyFee * 52;
 
-      const pctPerBet = betSize > 0 ? TAX_PER_WAGER / betSize : NaN;
-      const effRate   = totalStaked > 0 ? totalFee / totalStaked : NaN;
+    const pctPerBet = betSize > 0 ? TAX_PER_WAGER / betSize : NaN;
+    const effRate   = totalStaked > 0 ? totalFee / totalStaked : NaN;
 
-      // Headline
-      if (betsWeek === 0 || betSize === 0) {
-        headlineCostEl.textContent = 'Enter your betting habits above.';
-        headlineContextEl.textContent = '';
-        impactPerBetEl.textContent = '';
-        impactPerWeekEl.textContent = '';
-        impactPerYearEl.textContent = '';
-        sendHeight();
-        return;
-      }
-
-      headlineCostEl.textContent =
-        'You’d pay ' + currencyPrecise.format(totalFee) +
-        ' in per-wager taxes over ' + weeks + ' weeks.';
-
-      if (isFinite(effRate)) {
-        headlineContextEl.textContent =
-          'In that period, you would place about ' + currencyPrecise.format(totalStaked) +
-          ' in wagers. The per-wager fee functions as an effective surcharge of about ' +
-          formatPercent(effRate, 1) +
-          ' on the total amount wagered.';
-      } else {
-        headlineContextEl.textContent = '';
-      }
-
-      // Impact lines
-      if (isFinite(pctPerBet) && betSize > 0) {
-        impactPerBetEl.textContent =
-          '• An effective cost increase of about ' +
-          formatPercent(pctPerBet, 1) +
-          ' on each wager';
-      } else {
-        impactPerBetEl.textContent = '';
-      }
-
-      impactPerWeekEl.textContent =
-        '• Around ' + currencyPrecise.format(weeklyFee) +
-        ' in per-wager taxes each week';
-
-      impactPerYearEl.textContent =
-        '• About ' + currencyPrecise.format(yearlyFee) +
-        ' in per-wager taxes over a full year at similar betting levels';
-
+    if (betsWeek === 0 || betSize === 0) {
+      headlineCostEl.textContent = 'Enter your betting habits above.';
+      headlineContextEl.textContent = '';
+      impactPerBetEl.textContent = '';
+      impactPerWeekEl.textContent = '';
+      impactPerYearEl.textContent = '';
       sendHeight();
+      return;
     }
 
-    // Hook up events
-    ['input', 'change'].forEach(evt => {
-      betsInput.addEventListener(evt, update);
-      betSizeInput.addEventListener(evt, update);
-      weeksInput.addEventListener(evt, update);
-    });
+    headlineCostEl.textContent =
+      'You’d pay ' + currencyPrecise.format(totalFee) +
+      ' in per-wager taxes over ' + weeks + ' weeks.';
 
-    // Initial render
-    window.addEventListener('load', update);
-  })();
-
-  // ======================= AUTO-RESIZE FOR EMBED =======================
-  function sendHeight() {
-    const height = document.documentElement.scrollHeight;
-    if (window.parent && window.parent !== window) {
-      window.parent.postMessage({ type: "embedHeight", height: height }, "*");
+    if (isFinite(effRate)) {
+      headlineContextEl.textContent =
+        'In that period, you would place about ' + currencyPrecise.format(totalStaked) +
+        ' in wagers. The per-wager fee functions as an effective surcharge of about ' +
+        formatPercent(effRate, 1) +
+        ' on the total amount wagered.';
+    } else {
+      headlineContextEl.textContent = '';
     }
+
+    if (isFinite(pctPerBet) && betSize > 0) {
+      impactPerBetEl.textContent =
+        '• An effective cost increase of about ' +
+        formatPercent(pctPerBet, 1) +
+        ' on each wager';
+    } else {
+      impactPerBetEl.textContent = '';
+    }
+
+    impactPerWeekEl.textContent =
+      '• Around ' + currencyPrecise.format(weeklyFee) +
+      ' in per-wager taxes each week';
+
+    impactPerYearEl.textContent =
+      '• About ' + currencyPrecise.format(yearlyFee) +
+      ' in per-wager taxes over a full year at similar betting levels';
+
+    sendHeight();
   }
 
-  window.addEventListener("load", sendHeight);
+  ['input', 'change'].forEach(evt => {
+    betsInput.addEventListener(evt, update);
+    betSizeInput.addEventListener(evt, update);
+    weeksInput.addEventListener(evt, update);
+  });
 
-  if (typeof ResizeObserver !== "undefined") {
-    const ro = new ResizeObserver(sendHeight);
-    ro.observe(document.body);
+  window.addEventListener('load', update);
+})();
+</script>
+
+<!-- ======================= AUTO-RESIZE FOR IFRAME ======================= -->
+<script>
+function sendHeight() {
+  const height = document.documentElement.scrollHeight;
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: "embedHeight", height: height }, "*");
   }
+}
 
-  document.addEventListener("input", sendHeight);
-  document.addEventListener("change", sendHeight);
+window.addEventListener("load", sendHeight);
+
+if (typeof ResizeObserver !== "undefined") {
+  const ro = new ResizeObserver(sendHeight);
+  ro.observe(document.body);
+}
+
+document.addEventListener("input", sendHeight);
+document.addEventListener("change", sendHeight);
 </script>
 
 </body>
